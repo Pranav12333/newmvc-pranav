@@ -1,0 +1,59 @@
+<?php
+
+$shipping_methods = $this->shippings;
+
+?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="Skin/CSS/cgrid.css">
+</head>
+<body>
+    <?php require_once 'View/html/header.phtml';?>
+    <div class="title9">
+        <div class="main9">
+            MANAGE SHIPPING
+        </div>
+        
+        <div class="main99">
+            <a href="<?php echo $this->getUrl('shipping','add');?>" class="main999">ADD SHIPPING</a>
+        </div>
+    </div>
+    <table>
+        <tr>
+            <td>shipping_id</td>
+            <td>name</td>
+            <td>amount</td>
+            <td>status</td>
+            <td>created_at</td>
+            <td>updated_at</td>
+            <td>EDIT</td>
+            <td>DELETE</td>
+        </tr>
+        <?php if (!$shipping_methods):?>
+        <tr>
+            <td>No records available.</td>
+        </tr>
+        <?php else:?>
+        <?php foreach ($shipping_methods as $shipping_method): ?>
+        <tr>            
+            <td><?php echo $shipping_method->shipping_id?></td>
+            <td><?php echo $shipping_method->name?></td>
+            <td><?php echo $shipping_method->amount?></td>
+            <td><?php echo $shipping_method->status?></td>
+            <td><?php echo $shipping_method->created_at?></td>
+            <td><?php echo $shipping_method->updated_at?></td>
+            <td><a href="<?php echo $this->getUrl('shipping','edit',array('shipping_id' =>  $shipping_method->shipping_id));?>">EDIT</td>
+            <td><a href="<?php echo $this->getUrl('shipping','delete',array('shipping_id' =>  $shipping_method->shipping_id));?>">DELETE</td>
+        </tr>
+
+        <?php endforeach; ?>
+        <?php endif;?>  
+    </table>
+</body>
+</html>

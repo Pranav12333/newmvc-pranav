@@ -1,0 +1,67 @@
+<?php
+
+$salesmanId = $this->salesmanId; 
+// print_r($salesmanId);
+// die();
+$salesmen = $this->salesmen;
+$salesmanPrices = $this->salesmanPrices;
+// $salesmen = $array[1];
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+	<?php require_once 'View/html/footer.phtml';?>
+	
+	<form method="post" action = "<?php echo $this->getUrl('salesman_price', 'update', ['salesman_id' => $salesmanId]);?>">
+	<table width="100%" border="1px">
+
+		<select>
+			<option>select salesman</option>
+			<?php foreach ($salesmen as $salesman): ?>
+				
+			<option value="<?php echo $salesman->salesman_id;
+							if($salesman->salesman_id == $id){
+								echo "selected";
+								}?>"><?php echo $salesman->first_name?></option>
+			<?php endforeach ?>
+			<input type="submit" name="save">
+		</select>
+
+		<!-- <button>UPDATE</button> -->
+		<button type="submit" class="add39">Update</button>
+
+		<tr>
+			<td>product_id</td>
+			<td>name</td>
+			<td>sku</td>
+			<td>cost</td>
+			<td>price</td>
+			<td>s_price</td>
+			<td>remove</td>
+		</tr>
+
+		<?php foreach ($salesmanPrices as $salesman_price): ?>
+			
+		<tr>
+			<td><?php echo $salesman_price->product_id ?></td>
+			<td><?php echo $salesman_price->name ?></td>
+			<td><?php echo $salesman_price->SKU ?></td>
+			<td><?php echo $salesman_price->cost ?></td>
+			<td><?php echo $salesman_price->price ?></td>
+			<td><input type="number" name="s_price[<?php echo $salesman_price->product_id;?>]" value = "<?php echo $salesman_price->salesman_price?>" ></td>
+			<td><a href="<?php echo $this->getUrl('salesman','delete',['salesman_id' => $price['product_id']])?>">delete</a>
+			</td>
+			
+		</tr>
+		<?php endforeach ?>
+
+		</table>
+</form>
+</body>
+</html>

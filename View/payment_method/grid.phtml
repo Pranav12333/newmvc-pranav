@@ -1,0 +1,58 @@
+<?php
+
+$paymentMethods = $this->payments;
+
+?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="Skin/CSS/cgrid.css">
+</head>
+<body>
+    <?php require_once 'View/html/header.phtml';?>
+    <div class="title9">
+        <div class="main9">
+            MANAGE PAYMENT
+        </div>
+
+        <div class="main99">
+            <a href="<?php echo $this->getUrl('payment','add');?>" class="main999">ADD PAYMENT</a>
+        </div>
+    </div>
+    <table>
+        <tr>
+            <td>payment_method_id</td>
+            <td>name</td>
+            <td>status</td>
+            <td>created_at</td>
+            <td>updated_at</td>
+            <td>EDIT</td>
+            <td>DELETE</td>
+        </tr>
+        <?php if (!$paymentMethods):?>
+        <tr>
+            <td>No records available.</td>
+        </tr>
+        <?php else:?>
+         <?php foreach ($paymentMethods as $payment_method): ?>
+            <tr>
+                <td> <?php echo $payment_method->payment_method_id ?></td>
+                <td> <?php echo $payment_method->name ?></td>
+                <td> <?php echo $payment_method->status ?></td>
+                <td> <?php echo $payment_method->created_at ?></td>
+                <td> <?php echo $payment_method->updated_at ?></td>
+                <td><a href="<?php echo $this->getUrl('payment','edit',array('payment_method_id' =>  $payment_method->payment_method_id));?>">EDIT</td>
+                <td><a href="<?php echo $this->getUrl('payment','delete',array('payment_method_id' =>  $payment_method->payment_method_id));?>">DELETE</td>
+            </tr>
+            
+        <?php endforeach ?>
+        <?php endif;?>
+    </table>
+
+</body>
+</html>

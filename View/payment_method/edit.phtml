@@ -1,0 +1,68 @@
+<?php
+
+$paymentMethod = $this->payment;
+// $paymentId = $this->getPaymentId();
+
+
+?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+    <link rel="stylesheet" type="text/css" href="Skin/CSS/cedit.css">
+</head>
+<body>
+	<form action="<?php echo $this->getUrl('payment','save');?>" method = "post">
+		<div class="content9">
+			<div class="add19">
+				EDIT PAYMENT
+			</div>	
+			<div class="add29">
+				<a href="<?php echo $this->getUrl('payment','grid',[],true);?>" class="add39">Cancel</a>
+				<button type="submit" class="add39">Save</button>
+			</div>
+		</div>
+		<div class="head9">
+			PAYMENT INFORMATION
+		</div>
+		<table>
+			<tr>
+				<td>name</td>
+				<td><input type="text" name="payment[name]" value="<?php echo $paymentMethod->name;?>" class="addi9"></td>
+			</tr>
+			<!-- <tr>
+				<td>status</td>
+				<td>
+					<select name="payment[status]" class="addi9">
+					  <?php echo $paymentMethod->status ?>
+					  <option value="active" <?php if ($paymentMethod->status === 'active'){
+													echo "selected";}
+												?>> active </option>
+					
+				<option value="inactive" <?php if ($paymentMethod->status === 'inactive'){
+													echo "selected";}
+												?>> inactive</option>
+					</select>
+				</td>
+			</tr> -->
+				<tr>
+		<td>Status</td>
+		<td>
+		<select name="payment[status]">
+			<?php foreach ($paymentMethod->getTable()->getStatusOptions() as $key => $value):?>
+			<?php $selected = ($key == $paymentMethod->getstatus()) ? 'selected' : '';?>
+			<option value="<?php echo $key ?>"<?php echo $selected; ?>><?php echo $value;?></option>
+			<?php endforeach;?>
+		</select>
+	</td>
+		<!-- <td><input type="text" name="admin[status]" value="<?php echo $admin->status ?>"></td> -->
+	</tr>
+		</table>
+	</form>
+
+</body>
+</html>

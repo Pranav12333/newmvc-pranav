@@ -1,0 +1,98 @@
+<?php
+
+$salesman = $this->salesman;
+$address = $this->salesmanAddress;
+// $salesmanId = $this->getSalesmanId();
+
+?>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="Skin/CSS/cedit.css">
+</head>
+<body>
+   <form action="<?php echo $this->getUrl('salesman','save');?>" method= "post">
+   	<div class="content9">
+   		<div class="add19">
+   			EDIT SALESMAN
+   		</div>
+   		<div class="add29">
+   			<a href="<?php echo $this->getUrl('salesman','grid',[],true);?>" class="add39">Cancel</a>
+   			<button type="submit" class="add39">Save</button>
+   		</div>
+   	</div>
+   	<div class="head9">
+   		SALESMAN INFORMATION
+   	</div>
+   	<table>
+   		<tr>
+   			<td>first_name</td>
+   			<td><input type="text" name="salesman[first_name]" value="<?php echo $salesman->first_name?>" class="addi9"></td>
+   		</tr>
+   		<tr>
+   			<td>last_name</td>
+   			<td><input type="text" name="salesman[last_name]" value="<?php echo $salesman->last_name?>" class="addi9"></td>
+   		</tr>
+
+		<tr>
+   			<td>email</td>
+   			<td><input type="text" name="salesman[email]" value="<?php echo $salesman->email?>" class="addi9"></td>
+   		</tr>
+
+		<tr>
+   			<td>gender</td>
+   			<td><input type="text" name="salesman[gender]" value="<?php echo $salesman->gender?>" class="addi9"></td>
+   		</tr>
+
+		<tr>
+   			<td>mobile</td>
+   			<td><input type="text" name="salesman[mobile]" value="<?php echo $salesman->mobile?>" class="addi9"></td>
+   			<tr>
+		<td>Status</td>
+		<td>
+		<select name="salesman[status]">
+			<?php foreach ($salesman->getTable()->getStatusOptions() as $key => $value):?>
+			<?php $selected = ($key == $salesman->getstatus()) ? 'selected' : '';?>
+			<option value="<?php echo $key ?>"<?php echo $selected; ?>><?php echo $value;?></option>
+			<?php endforeach;?>
+		</select>
+	</td>
+		<!-- <td><input type="text" name="admin[status]" value="<?php echo $admin->status ?>"></td> -->
+	</tr>
+   		<tr>
+   			<td>company</td>
+   			<td><input type="text" name="salesman[company]" value="<?php echo $salesman->company?>" class="addi9"></td>
+   		</tr>
+   	</table>
+   	<table>
+		<tr>
+			<td>address</td>
+			<td><input type="text" name="address[address]" value="<?php echo $address->address;?>" class="addi9"></td>
+		</tr>
+		<tr>
+			<td>city</td>
+			<td><input type="text" name="address[city]" value="<?php echo $address->city;?>" class="addi9"></td>
+		</tr>
+		<tr>
+			<td>state</td>
+			<td><input type="text" name="address[state]" value="<?php echo $address->state;?>" class="addi9"></td>
+		</tr>
+		<tr>
+			<td>country</td>
+			<td><input type="text" name="address[country]" value="<?php echo $address->country;?>" class="addi9"></td>
+		</tr>
+		<tr>
+			<td>zip_code</td>
+			<td><input type="text" name="address[zip_code]" value="<?php echo $address->zip_code;?>" class="addi9"></td>
+		</tr>
+	
+	</table>
+   </form>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<?php
+
+$admins = $this->admins;
+
+?>
+
+<table>
+	<tr>
+		<td>
+			<a href="<?php  echo $this->getUrl('admin','add');?>">ADD</a>
+		</td>
+	</tr>
+</table>
+
+<table width = "100%" border = "1px">
+	<tr>
+		<td>Admin Id</td>
+		<td>Email</td>
+		<td>Status</td>
+		<td>Created At</td>
+		<td>Updated At</td>
+		<td>Edit</td>
+	</tr>
+
+	<?php if (!$admins):?>
+		<tr>
+			<td>No records available.</td>
+		</tr>
+	<?php else:?>
+		<?php foreach($admins as $admin):?>
+			<tr>
+				<td><?php echo $admin->admin_id;?></td>
+				<td><?php echo $admin->email;?></td>
+				<!-- <td><?php //echo $admin->status;?></td> -->
+				<td><?php echo $admin->getStatusText($admin->status );?></td>
+				<td><?php echo $admin->created_at;?></td>
+				<td><?php echo $admin->updated_at;?></td>
+				<td><a href="<?php echo $this->getUrl('admin','edit',['id'=>$admin->admin_id])?>">Edit</a></td>
+				<td><a href="<?php echo $this->getUrl('admin','delete',['id'=>$admin->admin_id])?>">Delete</a></td>
+			</tr>
+		<?php endforeach; ?>
+	<?php endif;?>
+</table>
